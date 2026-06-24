@@ -1,0 +1,75 @@
+﻿  <!-- ── WORK EXPERIENCE TIMELINE ── -->
+  <div id="work">
+    <p class="tl-label">Work Experience</p>
+    <div class="tl-scroll-outer">
+      <div class="tl-track" id="tlTrack">
+        <div class="tl-axis"><div class="tl-axis-fill"></div></div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div><div class="tl-connector"></div>
+          <div class="tl-pill">
+            <span class="tl-company">Pleco Solutions</span>
+            <span class="tl-role">Data Analytics Engineer</span>
+            <div class="tl-pill-body"><div class="tl-body-inner">
+              <span class="tl-dates">May 2026 &ndash; Present</span>
+              <p class="tl-desc">Built the first AI demand-forecaster for large databases by developing an end-to-end Python-based data pipeline. Pitched the product to Pleco Solution's clients.</p>
+              <div class="tl-tags"><span class="tl-tag">Snowflake</span><span class="tl-tag">Power BI</span><span class="tl-tag">SQL</span><span class="tl-tag">Supply-Chain</span></div>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div><div class="tl-connector"></div>
+          <div class="tl-pill">
+            <span class="tl-company">AviLux</span>
+            <span class="tl-role">Operations &amp; Regulations Lead</span>
+            <div class="tl-pill-body"><div class="tl-body-inner">
+              <span class="tl-dates">Jan 2026 &ndash; Present</span>
+              <p class="tl-desc">Working directly with the founder of an early-stage food-delivery startup on drone deployment. Lead operations and regulations &mdash; FAA protocol development, GTM budgets, and launch prep.</p>
+              <div class="tl-tags"><span class="tl-tag">Regulatory Strategy</span><span class="tl-tag">GTM</span><span class="tl-tag">Drone Tech</span><span class="tl-tag">Operations</span></div>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div><div class="tl-connector"></div>
+          <div class="tl-pill">
+            <span class="tl-company">Autodesk</span>
+            <span class="tl-role">Design &amp; Make Ambassador</span>
+            <div class="tl-pill-body"><div class="tl-body-inner">
+              <span class="tl-dates">Jun 2025 &ndash; May 2026</span>
+              <p class="tl-desc">Selected to share the Design and Make platform through technical workshops and community-building initiatives.</p>
+              <div class="tl-tags"><span class="tl-tag">Fusion</span><span class="tl-tag">AutoCAD</span><span class="tl-tag">Technical Education</span></div>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div><div class="tl-connector"></div>
+          <div class="tl-pill">
+            <span class="tl-company">BSB Design</span>
+            <span class="tl-role">Architectural Design Intern</span>
+            <div class="tl-pill-body"><div class="tl-body-inner">
+              <span class="tl-dates">Aug 2024 &middot; Frisco, TX</span>
+              <p class="tl-desc">Translated client requirements into 2D CAD deliverables within a live architectural workflow. Hands-on exposure to stakeholder communication and iterative revision management.</p>
+              <div class="tl-tags"><span class="tl-tag">Revit</span><span class="tl-tag">2D Drafting</span><span class="tl-tag">Client Communication</span></div>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div><div class="tl-connector"></div>
+          <div class="tl-pill">
+            <span class="tl-company">Abbott</span>
+            <span class="tl-role">Independent Study &amp; Mentorship</span>
+            <div class="tl-pill-body"><div class="tl-body-inner">
+              <span class="tl-dates">Jan &ndash; May 2024 &middot; Irving, TX</span>
+              <p class="tl-desc">Conducted a self-directed thermodynamics research project under mentorship from Abbott's Manager of Global Technical Support.</p>
+              <div class="tl-tags"><span class="tl-tag">Thermodynamics</span><span class="tl-tag">3D Modelling</span><span class="tl-tag">Research</span><span class="tl-tag">CAD</span></div>
+            </div></div>
+          </div>
+        </div>
+
+      </div><!-- /#tlTrack -->
+    </div><!-- /.tl-scroll-outer -->
+  </div><!-- /#work -->

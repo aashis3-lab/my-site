@@ -1,0 +1,11 @@
+﻿
+  /* ── Work Timeline — mobile: vertical stack ── */
+  .tl-scroll-outer { overflow-x: visible; cursor: default; -webkit-mask-image: none !important; mask-image: none !important; }
+  .tl-track { flex-direction: column; gap: 0; padding: 0 6vw 3rem; }
+  .tl-axis { display: none; }
+  .tl-item { flex: none; width: 100%; min-width: 0 !important; padding-top: 1.2rem; border-top: 1px solid rgba(249,248,245,0.08); align-items: flex-start; cursor: default; }
+  .tl-dot, .tl-connector { display: none; }
+  .tl-pill { border: none; background: transparent !important; box-shadow: none !important; transform: none !important; padding: 0; opacity: 1 !important; }
+  .tl-pill-body { display: block !important; opacity: 1 !important; }
+  .tl-body-inner { overflow: visible; }
+  .tl-company, .tl-role { white-space: normal; }

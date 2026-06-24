@@ -1,0 +1,20 @@
+.home {
+  background-color: #1a1a1a;
+  min-height: 100vh;
+  padding-top: 14rem;
+
+  &-heading {
+    color: #f8f8f8;
+    leading-trim: both;
+    font-family: Porlane;
+    font-size: 55.117rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 89%;
+    letter-spacing: 0.551rem;
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto;
+    position: relative;
+  }
+}

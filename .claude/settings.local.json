@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(python3)",
+      "Bash(python3 patch_pdf.py)",
+      "Bash(python3 -c \"import os; print\\(os.path.getsize\\(r'C:/Users/prsha/SITE!/portfolio.pdf'\\)\\)\")",
+      "Bash(python3 /dev/stdin)",
+      "Bash(cat)",
+      "Bash(python3 /tmp/build_globe.py)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\prsha\\\\portfolio\\\\glb\\\\\" | Select-Object Name, @{n='MB';e={[Math]::Round\\($_.Length/1MB,2\\)}})"
+    ]
+  }
+}

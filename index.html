@@ -52,8 +52,9 @@ body {
   transition: transform 0.3s ease, opacity 0.3s ease;
   transform-origin: center;
 }
-#toc-btn.open .toc-bar:first-child { transform: translateY(4.65px) rotate(45deg); }
-#toc-btn.open .toc-bar:last-child  { transform: translateY(-4.65px) rotate(-45deg); }
+#toc-btn.open .toc-bar:first-child { width: 18px; }
+#toc-btn.is-open .toc-bar:first-child { width: 27px; transform: translateY(4.65px) rotate(45deg); }
+#toc-btn.open #toc-btn.is-open .toc-bar:last-child  { transform: translateY(-4.65px) rotate(-45deg); }
 
 #toc-nav {
   position: fixed;
@@ -1561,6 +1562,7 @@ nav {
 
   window.toggleToc = function() {
     open = !open;
+    btn.classList.toggle('is-open', open);
     nav.style.opacity        = open ? '1' : '0';
     nav.style.pointerEvents  = open ? 'auto' : 'none';
     nav.style.transform      = open ? 'translateY(0)' : 'translateY(-6px)';
@@ -1568,19 +1570,23 @@ nav {
 
   window.closeToc = function() {
     open = false;
+    btn.classList.remove('is-open');
     nav.style.opacity       = '0';
     nav.style.pointerEvents = 'none';
     nav.style.transform     = 'translateY(-6px)';
   };
 
-  // Show burger after scrolling past hero
-  function onScroll() {
-    var show = window.scrollY > 80;
-    btn.style.opacity       = show ? '1' : '0';
-    btn.style.pointerEvents = show ? 'auto' : 'none';
+  // Show burger only after hero section leaves viewport
+  var hero = document.getElementById('hero');
+  if (hero) {
+    var heroObs = new IntersectionObserver(function(entries) {
+      var heroVisible = entries[0].isIntersecting;
+      btn.style.opacity       = heroVisible ? '0' : '1';
+      btn.style.pointerEvents = heroVisible ? 'none' : 'auto';
+      if (heroVisible) window.closeToc();
+    }, { threshold: 0.1 });
+    heroObs.observe(hero);
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
   // Close on outside click
   document.addEventListener('click', function(e) {

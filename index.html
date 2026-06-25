@@ -77,8 +77,8 @@ body {
 }
 #toc-nav a {
   font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 300;
+  font-size: 1.26rem;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #fff;
@@ -529,9 +529,34 @@ nav {
 
 /* ── CAD Models — Vertical Carousel ── */
 #cad-models {
+  position: relative;
+  overflow: hidden;
   background: #010101;
   border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 240px 0 0;
 }
+
+/* Moon — absolute background behind carousel + text */
+.cad-moon-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+}
+.cad-moon-bar img {
+  display: block;
+  flex-shrink: 0;
+}
+.cad-moon-bar--top img { transform: rotate(-90deg); clip-path: inset(0 0 15px 0); }
+
 .cad-header { margin-bottom: 2.5rem; }
 .cad-eyebrow {
   font-family: 'Inter', sans-serif;
@@ -561,30 +586,23 @@ nav {
   grid-template-columns: 1fr 0.5fr;
   gap: 0;
   align-items: stretch;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 /* Left column wrapper */
 .cad-col {
   position: relative;
   overflow: hidden;
 }
-/* Moon strip: left edge at card right edge (56% of col) */
-.cad-moon-bg {
-  position: absolute;
-  left: 56%; top: 0; right: 0; bottom: 0;
-  background-image: url('qmoon.jpg');
-  background-size: auto 100%;
-  background-position: left center;
-  background-repeat: no-repeat;
-  pointer-events: none;
-  z-index: 1;
-}
 /* ── Card stack ── */
 /* ══ 3-D Vertical Stack Carousel – symmetric peek ══ */
 .cad-stack {
   position: relative;
-  height: 600px;
+  height: 650px;
   overflow: hidden;
-  background: #010101;
+  background: transparent;
 }
 /*
   5 virtual slots: -2  -1  [0]  +1  +2
@@ -596,7 +614,7 @@ nav {
 */
 .cad-card {
   position: absolute;
-  left: 3%; right: 44%;
+  left: 27%; right: 11%;
   height: 400px;
   top: 100px;
   border-radius: 20px;
@@ -641,7 +659,7 @@ nav {
 /* ── Side nav (chevrons + counter) ── */
 .cad-stack-nav {
   position: absolute;
-  left: 58%;
+  right: 36px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -690,10 +708,10 @@ nav {
   flex-direction: column;
   justify-content: center;
   gap: 1.25rem;
-  padding: 4rem 7vw 4rem 5vw;
+  padding: 4rem 7vw 4rem 0;
   overflow: hidden;
-  background: #010101;
-  height: 600px;
+  background: transparent;
+  height: 650px;
 }
 /* Meta label carousel (mirrors main carousel) */
 .cad-meta {
@@ -920,8 +938,8 @@ nav {
 }
 .tl-label {
   font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 300;
+  font-size: 1.26rem;
+  font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(249,248,245,0.3);
@@ -992,21 +1010,22 @@ nav {
   font-size: 1.4rem;
   font-weight: 800;
   letter-spacing: 0.01em;
-  color: rgba(249,248,245,0.38);
+  color: rgba(249,248,245,0.85);
+  -webkit-text-fill-color: rgba(249,248,245,0.85);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
   text-align: center;
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, -webkit-text-fill-color 0.25s ease, -webkit-text-stroke 0.25s ease;
 }
-.tl-item:hover .tl-above-label { color: rgba(249,248,245,0.75); }
+.tl-item:hover .tl-above-label { -webkit-text-fill-color: transparent; -webkit-text-stroke: 1.5px rgba(249,248,245,0.85); }
 .tl-above-date {
   height: 24px;
   display: flex; align-items: center; justify-content: center;
   font-family: 'Inter', sans-serif; font-size: 0.68rem;
   font-weight: 400; letter-spacing: 0.03em;
-  color: rgba(249,248,245,0.35); white-space: nowrap;
+  color: rgba(249,248,245,0.6); white-space: nowrap;
   width: 100%; text-align: center;
   transition: color 0.25s ease;
 }
@@ -1020,27 +1039,17 @@ nav {
   flex-shrink: 0;
   position: relative;
   z-index: 2;
-  transform: scale(0);
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+  transition: background 0.3s ease;
 }
-.tl-track.tl-animated .tl-dot { transform: scale(1); }
 .tl-item:hover .tl-dot { background: rgba(249,248,245,0.9); }
 
-/* sonar pulse ring on each dot */
-@keyframes tlSonar {
-  0%   { box-shadow: 0 0 0 0   rgba(249,248,245,0.55); }
   65%  { box-shadow: 0 0 0 10px rgba(249,248,245,0);   }
   100% { box-shadow: 0 0 0 0   rgba(249,248,245,0);   }
 }
-.tl-track.tl-animated .tl-item:nth-child(1) .tl-dot { animation: tlSonar 2.4s ease-out 1.0s infinite; }
-.tl-track.tl-animated .tl-item:nth-child(2) .tl-dot { animation: tlSonar 2.4s ease-out 1.5s infinite; }
-.tl-track.tl-animated .tl-item:nth-child(3) .tl-dot { animation: tlSonar 2.4s ease-out 2.0s infinite; }
-.tl-track.tl-animated .tl-item:nth-child(4) .tl-dot { animation: tlSonar 2.4s ease-out 2.5s infinite; }
-.tl-track.tl-animated .tl-item:nth-child(5) .tl-dot { animation: tlSonar 2.4s ease-out 3.0s infinite; }
 
 .tl-connector {
   width: 1px;
-  height: 16px;
+  height: 80px;
   background: rgba(249,248,245,0.1);
   flex-shrink: 0;
   transition: background 0.3s ease;
@@ -1539,7 +1548,9 @@ nav {
   <a href="#about" onclick="closeToc()">About</a>
   <a href="#work" onclick="closeToc()">Work</a>
   <a href="#archiveSection" onclick="closeToc()">Engineering</a>
+  <a href="#cad-models" onclick="closeToc()">CAD Models</a>
   <a href="#life-values" onclick="closeToc()">Projects</a>
+  <a href="#section-voice" onclick="closeToc()">Voice</a>
   <a href="#section-footer" onclick="closeToc()">Contact</a>
 </nav>
 
@@ -1657,6 +1668,24 @@ nav {
       <div class="tl-track tl-animated" id="tlTrack">
         <div class="tl-axis"><div class="tl-axis-fill"></div></div>
 
+
+        <div class="tl-item">
+          <span class="tl-above-label">Northstar Web Co.</span>
+          <span class="tl-above-date">June 2026 &ndash; Present</span>
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+          <div class="tl-pill">
+            <span class="tl-company">Founder + Developer/Designer</span>
+
+             <div class="tl-sep"></div>
+            <div class="tl-pill-body"><div class="tl-body-inner">
+              <p class="tl-desc">Northstar Web Co. is my web development studio where I design and build modern websites for local businesses, service &amp; corporate, and personal brands. I manage projects from initial wireframes and branding concepts to website development and deployment.</p>
+              </div></div>
+              <div class="tl-tags">
+                <span class="tl-tag">HTML</span><span class="tl-tag">React</span><span class="tl-tag">Figma</span>
+              </div>
+          </div>
+        </div>
         <div class="tl-item">
           <span class="tl-above-label">Pleco Solutions</span>
           <span class="tl-above-date">May 2026 &ndash; Present</span>
@@ -1710,43 +1739,6 @@ nav {
               </div>
           </div>
         </div>
-
-        <div class="tl-item">
-          <span class="tl-above-label">BSB Design</span>
-          <span class="tl-above-date">Aug 2024 &middot; Frisco, TX</span>
-          <div class="tl-dot"></div>
-          <div class="tl-connector"></div>
-          <div class="tl-pill">
-            <span class="tl-company">Architectural Design Intern</span>
-
-             <div class="tl-sep"></div>
-            <div class="tl-pill-body"><div class="tl-body-inner">
-              <p class="tl-desc">Translated client requirements into 2D CAD deliverables within a live architectural workflow. Hands-on exposure to stakeholder communication and iterative revision management.</p>
-              </div></div>
-              <div class="tl-tags">
-                <span class="tl-tag">Revit</span><span class="tl-tag">2D Drafting</span><span class="tl-tag">Client Communication</span>
-              </div>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <span class="tl-above-label">Abbott</span>
-          <span class="tl-above-date">Jan &ndash; May 2024 &middot; Irving, TX</span>
-          <div class="tl-dot"></div>
-          <div class="tl-connector"></div>
-          <div class="tl-pill">
-            <span class="tl-company">Independent Study &amp; Mentorship</span>
-
-             <div class="tl-sep"></div>
-            <div class="tl-pill-body"><div class="tl-body-inner">
-              <p class="tl-desc">Conducted a self-directed thermodynamics research project under mentorship from Abbott's Manager of Global Technical Support.</p>
-              </div></div>
-              <div class="tl-tags">
-                <span class="tl-tag">Thermodynamics</span><span class="tl-tag">3D Modelling</span><span class="tl-tag">Research</span><span class="tl-tag">CAD</span>
-              </div>
-          </div>
-        </div>
-
       </div><!-- /#tlTrack -->
     </div><!-- /.tl-scroll-outer -->
   </div><!-- /#work -->
@@ -2832,3 +2824,204 @@ window.addEventListener("load", function() {
   updatePanel();
 })();
 </script>
+
+
+<!-- ── SECTION 6: Physics Footer ── -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
+<section id="section-footer">
+  <img src="back.png" class="footer-layer footer-layer--back" alt="">
+
+  <div class="footer-bg-text" id="footerText">
+    <span class="footer-line footer-line--outline">AASHI</span>
+    <span class="footer-line">SHAH</span>
+  </div>
+
+  <!-- Right-half physics stage -->
+  <div id="footer-stage">
+    <a class="footer-icon" data-idx="0" data-label="Email"        data-href="mailto:aashi.shah.102@gmail.com"><img src="contact/address.jpg"   alt="Email"></a>
+    <a class="footer-icon" data-idx="1" data-label="Book a Call"  data-href="https://cal.com/aashi-shah/15min"><img src="contact/calendar.jpg"  alt="Book a Call"></a>
+    <a class="footer-icon" data-idx="2" data-label="Instagram"    data-href="https://www.instagram.com/im.aashi.shah/"><img src="contact/instagram.jpg" alt="Instagram"></a>
+    <a class="footer-icon" data-idx="3" data-label="LinkedIn"     data-href="https://linkedin.com/in/aashi-shah3/"><img src="contact/linkedin.jpg"  alt="LinkedIn"></a>
+    <a class="footer-icon" data-idx="4" data-label="Location"     data-href="https://maps.google.com/?q=3956+Hickory+Grove+Ln+Frisco+TX+75033"><img src="contact/mail.jpg"      alt="Location"></a>
+    <a class="footer-icon" data-idx="5" data-label="Resume"       data-href="Aashi's Resume.pdf"><img src="contact/resume.jpg"    alt="Resume"></a>
+    <a class="footer-icon" data-idx="6" data-label="Spotify"      data-href="https://open.spotify.com/user/nze1olid9nqyi6l89ihhaw6zf?si=bf9aec47315642d3"><img src="contact/spotify.jpg"   alt="Spotify"></a>
+    <!-- invisible overlay canvas for Matter.js mouse drag -->
+    <canvas id="footer-drag-canvas"></canvas>
+    <!-- tooltip -->
+    <div id="footer-tip"></div>
+  </div>
+
+  <img src="front.png" class="footer-layer footer-layer--front" alt="">
+  <a href="#" class="footer-return-top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Return to Top</a>
+</section>
+
+<script>
+(function() {
+  const ICON_HREFS = [
+    'mailto:aashi.shah.102@gmail.com',
+    'https://cal.com/aashi-shah/15min',
+    'https://www.instagram.com/im.aashi.shah/',
+    'https://linkedin.com/in/aashi-shah3/',
+    'https://maps.google.com/?q=3956+Hickory+Grove+Ln+Frisco+TX+75033',
+    "Aashi's Resume.pdf",
+    'https://open.spotify.com/user/nze1olid9nqyi6l89ihhaw6zf?si=bf9aec47315642d3',
+  ];
+  const isMob   = window.innerWidth <= 600;
+  const SZ      = isMob ? 97 : 129;
+  const HALF    = SZ / 2;
+  const CR      = isMob ? 18 : 23;
+  const STAGGER = 190;
+  let inited = false, bodies = [], W = 0, H = 0, Body = null;
+
+  function init() {
+    if (inited) return;
+    inited = true;
+    const stage = document.getElementById('footer-stage');
+    const iconEls = Array.from(stage.querySelectorAll('.footer-icon'));
+    const dragCanvas = document.getElementById('footer-drag-canvas');
+    const tip = document.getElementById('footer-tip');
+    W = stage.offsetWidth; H = stage.offsetHeight;
+    dragCanvas.width = W; dragCanvas.height = H;
+
+    const { Engine, Composite, Bodies, Events } = Matter;
+    Body = Matter.Body;
+    const engine = Engine.create({ gravity: { x: 0, y: 0.7 } });
+    const world  = engine.world;
+
+    const LEFT_LIMIT  = Math.ceil(HALF * Math.SQRT2) + 4;
+    const RIGHT_LIMIT = W - LEFT_LIMIT;
+    const FLOOR_LIMIT = H - 40 - HALF;
+
+    const ws = { isStatic: true, friction: 0.05, restitution: 0.45, label: 'wall' };
+    Composite.add(world, [
+      Bodies.rectangle(W / 2,   H - 30, W * 2, 60,    ws),
+      Bodies.rectangle(-500,    H / 2,  1000,  H * 2, ws),
+      Bodies.rectangle(W + 500, H / 2,  1000,  H * 2, ws),
+    ]);
+
+    iconEls.forEach(function(el, i) {
+      setTimeout(function() {
+        const col  = i % 4;
+        const row  = Math.floor(i / 4);
+        const colW = W / 4;
+        const x    = col * colW + colW / 2;
+        const y    = -(HALF + row * (SZ + 30) + 60);
+        const b = Bodies.rectangle(x, y, SZ, SZ, {
+          restitution: 0.3, friction: 0.06, frictionAir: 0.018, density: 0.004, label: 'icon-' + i,
+        });
+        Body.setVelocity(b, { x: 0, y: 1 });
+        Body.setAngularVelocity(b, (Math.random() - 0.5) * 0.1);
+        bodies.push({ body: b, el: el, idx: i });
+        Composite.add(world, b);
+        el.style.top  = y - HALF + 'px';
+        el.style.left = x - HALF + 'px';
+      }, i * STAGGER);
+    });
+
+    let mouseX = -9999, mouseY = -9999;
+    let hoveredEntry = null;
+
+    dragCanvas.addEventListener('mousemove', function(e) {
+      const r = dragCanvas.getBoundingClientRect();
+      mouseX = e.clientX - r.left;
+      mouseY = e.clientY - r.top;
+      let hit = null;
+      bodies.forEach(function(entry) {
+        const bx = entry.body.position.x, by = entry.body.position.y;
+        if (Math.abs(mouseX - bx) < HALF + 4 && Math.abs(mouseY - by) < HALF + 4) hit = entry;
+      });
+      if (hit !== hoveredEntry) {
+        hoveredEntry = hit;
+        tip.textContent = hit ? hit.el.dataset.label : '';
+        tip.style.opacity = hit ? '1' : '0';
+      }
+      if (hoveredEntry) {
+        tip.style.left = hoveredEntry.body.position.x + 'px';
+        tip.style.top  = (hoveredEntry.body.position.y - HALF - 38) + 'px';
+      }
+      dragCanvas.style.cursor = hit ? 'pointer' : 'default';
+    });
+    dragCanvas.addEventListener('mouseleave', function() {
+      mouseX = -9999; mouseY = -9999;
+      hoveredEntry = null;
+      tip.style.opacity = '0';
+      dragCanvas.style.cursor = 'default';
+    });
+    dragCanvas.addEventListener('click', function(e) {
+      const r = dragCanvas.getBoundingClientRect();
+      const cx = e.clientX - r.left, cy = e.clientY - r.top;
+      bodies.forEach(function(entry) {
+        const bx = entry.body.position.x, by = entry.body.position.y;
+        if (Math.abs(cx - bx) < HALF + 4 && Math.abs(cy - by) < HALF + 4) {
+          window.open(ICON_HREFS[entry.idx], '_blank');
+        }
+      });
+    });
+
+    iconEls.forEach(function(el) { el.style.borderRadius = CR + 'px'; });
+
+    const REPEL_RADIUS   = 140;
+    const REPEL_STRENGTH = 0.45;
+
+    let lastTime = 0;
+    function loop(ts) {
+      const delta = lastTime ? Math.min(ts - lastTime, 32) : 1000 / 60;
+      lastTime = ts;
+      bodies.forEach(function(entry) {
+        const b = entry.body;
+        const dx = b.position.x - mouseX, dy = b.position.y - mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < REPEL_RADIUS && dist > HALF) {
+          const strength = REPEL_STRENGTH * (1 - dist / REPEL_RADIUS);
+          Body.applyForce(b, b.position, { x: (dx / dist) * strength, y: (dy / dist) * strength });
+        }
+      });
+      Engine.update(engine, delta);
+      bodies.forEach(function(entry) {
+        const b = entry.body;
+        entry.el.style.left      = (b.position.x - HALF) + 'px';
+        entry.el.style.top       = (b.position.y - HALF) + 'px';
+        entry.el.style.transform = 'rotate(' + b.angle + 'rad)';
+      });
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  }
+
+  let dropTimer = null;
+  function dropAll() {
+    if (!inited) { init(); return; }
+    bodies.forEach(function(entry) {
+      entry.el.style.transition = 'none';
+      entry.el.style.opacity = '0';
+    });
+    bodies.forEach(function(entry, i) {
+      const col = i % 4, row = Math.floor(i / 4), colW = W / 4;
+      const x = col * colW + colW / 2;
+      const y = -(HALF + row * (SZ + 30) + 60);
+      Body.setPosition(entry.body, { x, y });
+      Body.setVelocity(entry.body, { x: 0, y: 1 });
+      Body.setAngle(entry.body, (Math.random() - 0.5) * 0.4);
+      Body.setAngularVelocity(entry.body, (Math.random() - 0.5) * 0.1);
+    });
+    bodies.forEach(function(entry, i) {
+      setTimeout(function() {
+        entry.el.style.transition = 'opacity 0.18s ease';
+        entry.el.style.opacity = '1';
+      }, i * STAGGER + 60);
+    });
+  }
+
+  const obs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      clearTimeout(dropTimer);
+      dropTimer = setTimeout(dropAll, 80);
+    }
+  }, { threshold: 0.08 });
+  obs.observe(document.getElementById('section-footer'));
+})();
+</script>
+
+</body>
+</html>

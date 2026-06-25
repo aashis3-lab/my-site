@@ -49,11 +49,10 @@ body {
   width: 27px;
   height: 1.8px;
   background: #fff;
-  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   transform-origin: center;
 }
-.toc-bar:first-child { width: 18px; }
-#toc-btn.is-open .toc-bar:first-child { width: 27px; transform: translateY(3.4px) rotate(45deg); }
+#toc-btn.is-open .toc-bar:first-child { transform: translateY(3.4px) rotate(45deg); }
 #toc-btn.is-open .toc-bar:last-child  { transform: translateY(-3.4px) rotate(-45deg); }
 
 
@@ -1798,6 +1797,9 @@ nav {
 
 <!-- ── SECTION 3.5: CAD Models ── -->
 <section id="cad-models">
+  <div class="cad-moon-bar cad-moon-bar--top">
+    <img src="qmoon.jpg" alt="">
+  </div>
   <div class="cad-layout">
 
     <!-- LEFT: 3D card stack -->

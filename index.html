@@ -2752,6 +2752,13 @@ window.addEventListener("load", function() {
     card.addEventListener('touchstart', () => vid.play().catch(() => {}), { passive: true });
   });
   // On mobile: unlock all videos on first user touch
+  document.addEventListener('touchstart', function unlock() {
+    document.querySelectorAll('#hero video').forEach(v => v.play().catch(() => {}));
+    document.removeEventListener('touchstart', unlock);
+  }, { once: true });
+})();
+</script>
+
 <script>
 (function () {
   /* â”€â”€ Work timeline: scroll fix + drag + animated reveal â”€â”€ */

@@ -2826,6 +2826,140 @@ window.addEventListener("load", function() {
 </script>
 
 
+<style>
+/* ── Footer section ── */
+#section-footer {
+  position: relative;
+  width: 100%;
+  height: 125vh;
+  overflow: hidden;
+  background: #f9f8f5;
+}
+.footer-layer {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+.footer-layer--back  { z-index: 0; filter: blur(2px); }
+.footer-layer--front { z-index: 20; bottom: -50px; }
+
+/* ── AASHI SHAH — sits ABOVE the icon stage ── */
+.footer-bg-text {
+  position: absolute;
+  bottom: 45px;
+  left: 0.06em;
+  z-index: 15;
+  font-family: 'League Spartan', sans-serif;
+  font-size: clamp(81px, 14.2vw, 230px);
+  font-weight: 800;
+  color: #000;
+  letter-spacing: 0.04em;
+  line-height: 0.82;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  transform: scaleX(1.22) scaleY(1.35);
+  transform-origin: bottom left;
+  -webkit-text-stroke: 2px #000;
+  text-shadow: 0 4px 18px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.08);
+}
+.footer-line { display: block; }
+/* AASHI: solid fill + white outline drawn behind fill */
+.footer-line--outline {
+  color: #000;
+  -webkit-text-stroke: 8px #f9f8f5;
+  paint-order: stroke fill;
+}
+
+/* ── Physics stage — right half only ── */
+#footer-stage {
+  position: absolute;
+  left: 50%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Icons — positioned by JS via physics */
+.footer-icon {
+  position: absolute;
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 18px;
+  overflow: hidden;
+  text-decoration: none;
+  pointer-events: none;          /* drag captured by canvas overlay */
+  box-shadow: 0 4px 18px rgba(0,0,0,0.14);
+  will-change: transform;
+  top: -200px;                   /* offscreen until JS places them */
+  left: 0;
+}
+.footer-icon img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Invisible canvas overlay — captures Matter.js mouse/drag */
+#footer-drag-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0;
+  z-index: 11;
+  cursor: default;
+}
+
+
+/* Tooltip */
+#footer-tip {
+  position: absolute;
+  z-index: 16;
+  background: rgba(10,10,10,0.82);
+  color: #fff;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  padding: 5px 11px;
+  border-radius: 7px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.14s ease;
+  transform: translateX(-50%);
+}
+
+/* Return to top */
+.footer-return-top {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.footer-return-top:hover { opacity: 1; }
+
+@media (max-width: 600px) {
+  #section-footer { height: 60vh !important; }
+  .footer-icon { width: 60px; height: 60px; border-radius: 14px; }
+}
+</style>
 <!-- ── SECTION 6: Physics Footer ── -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
 

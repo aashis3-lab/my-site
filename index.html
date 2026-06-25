@@ -49,12 +49,15 @@ body {
   width: 27px;
   height: 1.8px;
   background: #fff;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
   transform-origin: center;
 }
-#toc-btn.open .toc-bar:first-child { width: 18px; }
-#toc-btn.is-open .toc-bar:first-child { width: 27px; transform: translateY(4.65px) rotate(45deg); }
-#toc-btn.open #toc-btn.is-open .toc-bar:last-child  { transform: translateY(-4.65px) rotate(-45deg); }
+.toc-bar:first-child { width: 18px; }
+#toc-btn.is-open .toc-bar:first-child { width: 27px; transform: translateY(3.4px) rotate(45deg); }
+#toc-btn.is-open .toc-bar:last-child  { transform: translateY(-3.4px) rotate(-45deg); }
+
+
+
 
 #toc-nav {
   position: fixed;
@@ -1585,9 +1588,12 @@ nav {
       btn.style.opacity       = heroVisible ? '0' : '1';
       btn.style.pointerEvents = heroVisible ? 'none' : 'auto';
       if (heroVisible) window.closeToc();
-    }, { threshold: 0.1 });
+    }, { threshold: 0, rootMargin: '150px 0px 0px 0px' });
     heroObs.observe(hero);
   });
+
+  // Close menu on scroll
+  window.addEventListener('scroll', function() { if (open) window.closeToc(); }, { passive: true });
 
   // Close on outside click
   document.addEventListener('click', function(e) {

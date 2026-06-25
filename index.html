@@ -945,8 +945,8 @@ nav {
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: #000;
+  -webkit-text-fill-color: #000;
   -webkit-text-stroke: 1px rgba(249,248,245,0.75);
   padding: 0 5vw;
   margin-bottom: 1rem;
@@ -1024,7 +1024,7 @@ nav {
   text-align: center;
   transition: color 0.25s ease, -webkit-text-fill-color 0.25s ease, -webkit-text-stroke 0.25s ease;
 }
-.tl-item:hover .tl-above-label { -webkit-text-fill-color: transparent; -webkit-text-stroke: 1.5px rgba(249,248,245,0.85); }
+.tl-item.pill-hovered .tl-above-label { -webkit-text-fill-color: #000; -webkit-text-stroke: 1.5px rgba(249,248,245,0.85); }
 .tl-above-date {
   height: 24px;
   display: flex; align-items: center; justify-content: center;
@@ -1112,12 +1112,9 @@ nav {
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 0.22rem;
-  transition: -webkit-text-fill-color 0.25s ease, -webkit-text-stroke 0.25s ease;
 }
-.tl-item:hover .tl-company {
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px #0a0a0a;
-}
+
+
 .tl-role {
   font-family: 'Inter', sans-serif;
   font-size: 0.71rem;
@@ -3240,5 +3237,16 @@ window.addEventListener("load", function() {
 })();
 </script>
 
+
+<script>
+(function() {
+  document.querySelectorAll('.tl-pill').forEach(function(pill) {
+    var item = pill.closest('.tl-item');
+    if (!item) return;
+    pill.addEventListener('mouseenter', function() { item.classList.add('pill-hovered'); });
+    pill.addEventListener('mouseleave', function() { item.classList.remove('pill-hovered'); });
+  });
+})();
+</script>
 </body>
 </html>

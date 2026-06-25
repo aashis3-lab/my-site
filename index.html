@@ -945,9 +945,11 @@ nav {
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(249,248,245,0.3);
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgba(249,248,245,0.75);
   padding: 0 5vw;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 .tl-scroll-outer {
   overflow-x: auto;
@@ -1008,7 +1010,7 @@ nav {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 8px;
+  padding-bottom: 2px;
   font-family: 'Inter', sans-serif;
   font-size: 1.4rem;
   font-weight: 800;
@@ -1061,6 +1063,7 @@ nav {
 
 .tl-pill {
   width: 100%;
+  margin-top: 25px;
   border: 1px solid rgba(0,0,0,0.08);
   border-radius: 10px;
   background: #ffffff;
@@ -1103,11 +1106,17 @@ nav {
   font-size: 0.88rem;
   font-weight: 600;
   color: #0a0a0a;
+  -webkit-text-fill-color: #0a0a0a;
   display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-bottom: 0.22rem;
+  transition: -webkit-text-fill-color 0.25s ease, -webkit-text-stroke 0.25s ease;
+}
+.tl-item:hover .tl-company {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px #0a0a0a;
 }
 .tl-role {
   font-family: 'Inter', sans-serif;

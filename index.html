@@ -1891,6 +1891,27 @@ nav {
   </div><!-- /.cad-layout -->
 
 </section>
+<script>
+(function() {
+  function fitMoonBar(img) {
+    var section = document.getElementById('cad-models');
+    var sectionW = section ? section.offsetWidth : window.innerWidth;
+    var targetVisH = Math.round(sectionW * 0.385);
+    var scale = Math.min(targetVisH / img.naturalWidth, sectionW / img.naturalHeight);
+    var cssW = Math.round(img.naturalWidth  * scale);
+    var cssH = Math.round(img.naturalHeight * scale);
+    img.style.width     = cssW + 'px';
+    img.style.height    = cssH + 'px';
+    img.style.marginTop = -Math.round((cssH - cssW) / 2) + 'px';
+  }
+  var img = document.querySelector('.cad-moon-bar--top img');
+  if (img) {
+    if (img.complete && img.naturalWidth > 0) fitMoonBar(img);
+    else img.addEventListener('load', function() { fitMoonBar(img); });
+  }
+})();
+</script>
+
   <!-- ── SECTION 3: Archive ── -->
   <div class="eng-intro">
     <h2 class="eng-intro-title">Selected Work</h2>

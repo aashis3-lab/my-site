@@ -1553,6 +1553,44 @@ nav {
   <a href="#section-voice" onclick="closeToc()">Voice</a>
   <a href="#section-footer" onclick="closeToc()">Contact</a>
 </nav>
+<script>
+(function() {
+  var btn = document.getElementById('toc-btn');
+  var nav = document.getElementById('toc-nav');
+  var open = false;
+
+  window.toggleToc = function() {
+    open = !open;
+    nav.style.opacity        = open ? '1' : '0';
+    nav.style.pointerEvents  = open ? 'auto' : 'none';
+    nav.style.transform      = open ? 'translateY(0)' : 'translateY(-6px)';
+  };
+
+  window.closeToc = function() {
+    open = false;
+    nav.style.opacity       = '0';
+    nav.style.pointerEvents = 'none';
+    nav.style.transform     = 'translateY(-6px)';
+  };
+
+  // Show burger after scrolling past hero
+  function onScroll() {
+    var show = window.scrollY > 80;
+    btn.style.opacity       = show ? '1' : '0';
+    btn.style.pointerEvents = show ? 'auto' : 'none';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    if (open && !btn.contains(e.target) && !nav.contains(e.target)) {
+      window.closeToc();
+    }
+  });
+})();
+</script>
+
 
 <nav>
   <a class="nav-name" href="#">Aashi Shah</a>
